@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebForm.Models.Widget>
+
+@{
+    ViewBag.Title = "Widget Form";
+    Layout = "_Layout";
+}
+<br/>
+<h2>Widgets</h2>
+<hr/>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var widget in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelWidget => widget.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelWidget => widget.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelWidget => widget.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelWidget => widget.SubType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = widget.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = widget.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href= "@Url.Action("Create")" class = "btn btn-primary">Add Widget</a>

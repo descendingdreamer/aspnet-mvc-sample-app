@@ -1,0 +1,23 @@
+﻿@model WebForm.Models.Widget
+
+@{
+    ViewBag.Title = "Success";
+    Layout = "_Layout";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br/>
+        <br/>
+        <div class="alert alert-success" role="alert"> @ViewBag.Message Widget Successfully</div>
+        <script>
+            window.setTimeout(function () {
+                location.href = "@Url.Action("Index")";
+            }, 2500);
+        </script>
+    </div>
+}

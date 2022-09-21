@@ -1,0 +1,63 @@
+﻿@model WebForm.Models.Widget
+
+@{
+    ViewBag.Title = "Edit Widget";
+    Layout = "_LayoutDDL";
+}
+
+<br/>
+<h2>Edit Widget</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Type, Model.Types, "Select Type", 
+                    new { @id = "ddlType", @class = "form-control", @required = "required"})
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SubType, Model.SubTypes, "Select Sub-type", 
+                                    new { @id = "ddlSubType", @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.SubType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+                &nbsp; | &nbsp;
+                <a href="@Url.Action("Index")" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
